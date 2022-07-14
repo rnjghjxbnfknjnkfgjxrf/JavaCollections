@@ -12,7 +12,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         //Чтение данных и их добавление в коллекцию
-        LinkedList<Diamonds> diamondsList = readData();
+        ArrayList<Diamonds> diamondsList = readData();
 
         DecimalFormat df = new DecimalFormat("#.##");
 
@@ -92,12 +92,9 @@ public class Main {
 
     }
     //Метод, считывающий данные из файла
-    public static LinkedList<Diamonds> readData() throws IOException {
-        LinkedList<Diamonds> diamondsData = new LinkedList<>();
+    public static ArrayList<Diamonds> readData() throws IOException {
+        ArrayList<Diamonds> diamondsData = new ArrayList<>();
         Scanner sc = new Scanner(new File("data_diamond.txt"));
-        String[] possibleCutQualities = {"Fair", "Good", "Very Good", "Premium", "Ideal"};
-        String[] clarityTypes = {"FL", "IF", "VVS1", "VVS2", "VS1", "VS2", "SI1", "SI2", "I1", "I2", "I3"};
-
         try{
             while(sc.hasNext()){
                 Diamonds tempDiamond = new Diamonds();
@@ -114,9 +111,8 @@ public class Main {
                 diamondsData.add(tempDiamond);
             }
         }catch (DiamondException de){
-            System.out.println(de);
+            de.printStackTrace();
         }
-
         sc.close();
         return diamondsData;
     }
